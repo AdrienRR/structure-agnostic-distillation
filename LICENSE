@@ -1,0 +1,40 @@
+MIT License
+
+Copyright (c) 2026 Adrien Ramanana Rahary, Nicolas Dufour, Patrick Pérez, David Picard
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+--------------------------------------------------------------------------------
+Third-party code
+
+This repository includes code adapted from the projects below. Each is used under
+its own license, whose copyright notice is reproduced here.
+
+- VA-VAE / LightningDiT (https://github.com/hustvl/LightningDiT), MIT License,
+  Copyright (c) 2024 HUST Vision Lab: tokenizer training, LightningDiT model,
+  training and sampling scripts.
+- latent-diffusion (https://github.com/CompVis/latent-diffusion), MIT License,
+  Copyright (c) 2022 Machine Vision and Learning Group, LMU Munich: vavae/ldm/.
+- SiT (https://github.com/willisma/SiT), MIT License,
+  Copyright (c) Meta Platforms, Inc. and affiliates: transport/.
+- EVA-02 (https://github.com/baaivision/EVA), MIT License,
+  Copyright (c) 2022 BAAI-Vision: rotary embedding in models/pos_embed.py.
+- DINOv2 (https://github.com/facebookresearch/dinov2), Apache License 2.0,
+  Copyright (c) Meta Platforms, Inc. and affiliates: models/swiglu_ffn.py
+  (license header kept in the file).

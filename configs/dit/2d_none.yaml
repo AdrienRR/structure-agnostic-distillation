@@ -1,0 +1,55 @@
+# LightningDiT-XL/1 prior on the 2D-grid latent (16x16x32), no distillation tokenizer (configs/tokenizer/2d_none.yaml).
+# 80k steps at global batch 1024 (~64 epochs). Latents: extract_features.py -> latents/2d_none/imagenet_train_256.
+ckpt_path: null
+data:
+  data_path: latents/2d_none/imagenet_train_256
+  image_size: 256
+  num_classes: 1000
+  num_workers: 8
+  latent_norm: true
+  latent_multiplier: 1.0
+vae:
+  model_name: 2d_none
+  downsample_ratio: 16
+model:
+  model_type: LightningDiT-XL/1
+  use_qknorm: false
+  use_swiglu: true
+  use_rope: true
+  use_rmsnorm: true
+  wo_shift: false
+  in_chans: 32
+train:
+  max_steps: 80000
+  global_batch_size: 1024
+  global_seed: 0
+  output_dir: output
+  exp_name: 2d_none
+  ckpt: null
+  log_every: 100
+  ckpt_every: 5000
+optimizer:
+  lr: 0.0002
+  beta2: 0.95
+  max_grad_norm: 1.0
+transport:
+  path_type: Linear
+  prediction: velocity
+  loss_weight: null
+  sample_eps: null
+  train_eps: null
+  use_cosine_loss: true
+  use_lognorm: true
+sample:
+  mode: ODE
+  sampling_method: euler
+  atol: 0.000001
+  rtol: 0.001
+  reverse: false
+  likelihood: false
+  num_sampling_steps: 250
+  cfg_scale: 1.0
+  per_proc_batch_size: 512
+  fid_num: 50000
+  cfg_interval_start: 0.11
+  timestep_shift: 0.3

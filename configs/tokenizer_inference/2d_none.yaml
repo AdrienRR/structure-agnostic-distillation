@@ -1,0 +1,3 @@
+# Frozen tokenizer used for latent extraction, sampling and FID (2d_none).
+ckpt_path: logs/2d_none/checkpoints/epoch=000049.ckpt
+model_config: configs/tokenizer/2d_none.yaml

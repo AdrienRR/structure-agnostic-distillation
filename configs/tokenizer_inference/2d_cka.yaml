@@ -1,0 +1,3 @@
+# Frozen tokenizer used for latent extraction, sampling and FID (2d_cka).
+ckpt_path: logs/2d_cka/checkpoints/epoch=000049.ckpt
+model_config: configs/tokenizer/2d_cka.yaml

@@ -1,0 +1,3 @@
+# Frozen tokenizer used for latent extraction, sampling and FID (1d_pool_align).
+ckpt_path: logs/1d_pool_align/checkpoints/epoch=000049.ckpt
+model_config: configs/tokenizer/1d_pool_align.yaml

@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+# training outputs
+logs/
+output/
+latents/
+samples/
+tensorboard_logs/
+# downloaded weights / evaluator assets
+**/taming/modules/autoencoder/lpips/
+evaluations/
+*.ckpt
+*.pt
+*.npz

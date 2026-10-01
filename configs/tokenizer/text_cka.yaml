@@ -1,0 +1,55 @@
+# Tokenizer: 2D grid, relational CKA with BGE-large caption embeddings (cross-modal).
+# Trained for 50 epochs at global batch 256 (8 per GPU x 8 GPUs x 4 nodes).
+# Requires IMAGENET_ROOT and TEXT_EMB_ROOT (see README).
+model:
+  base_learning_rate: 0.0001
+  target: ldm.models.autoencoder.AutoencoderKL
+  params:
+    monitor: val/rec_loss
+    embed_dim: 32
+    use_vf: null
+    text_teacher_root: ${oc.env:TEXT_EMB_ROOT}
+    lossconfig:
+      target: ldm.modules.losses.LPIPSWithDiscriminator
+      params:
+        disc_start: 5001
+        kl_weight: 1.0e-06
+        disc_weight: 0.5
+        cka_grad_ratio: 10.0
+        cka_w_rank_local: true
+        cka_w_ema_decay: 0.99
+        cka_grad_clamp: 20000000.0
+        cka_gather: true
+        cka_align: cka
+    ddconfig:
+      double_z: true
+      z_channels: 32
+      resolution: 256
+      in_channels: 3
+      out_ch: 3
+      ch: 128
+      ch_mult: [1, 1, 2, 2, 4]
+      num_res_blocks: 2
+      attn_resolutions: [16]
+      dropout: 0.0
+data:
+  target: main.DataModuleFromConfig
+  params:
+    batch_size: 8
+    wrap: true
+    train:
+      target: ldm.data.imagenet.ImageNetTrain
+      params:
+        data_root: ${oc.env:IMAGENET_ROOT}
+    validation:
+      target: ldm.data.imagenet.ImageNetValidation
+      params:
+        data_root: ${oc.env:IMAGENET_ROOT}
+lightning:
+  trainer:
+    devices: 8
+    num_nodes: 4
+    strategy: ddp_find_unused_parameters_true
+    accelerator: gpu
+    max_epochs: 50
+    precision: 32
